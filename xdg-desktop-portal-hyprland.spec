@@ -1,7 +1,7 @@
 %global sdbus_version 1.3.0
 
 Name:           xdg-desktop-portal-hyprland
-Version:        1.3.2
+Version:        1.3.3
 Release:        %autorelease
 Summary:        xdg-desktop-portal backend for hyprland
 
@@ -16,7 +16,7 @@ License:        BSD-3-Clause AND HPND-sell-variant
 URL:            https://github.com/hyprwm/%{name}
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Source1:        https://github.com/Kistler-Group/sdbus-cpp/archive/v%{sdbus_version}/sdbus-%{sdbus_version}.tar.gz
-Patch:          https://github.com/hyprwm/xdg-desktop-portal-hyprland/commit/c5b30938710d6c599f3f5cd99a3ffac35381fb0f.patch
+Patch:          revert-c5b309.patch
 
 # https://fedoraproject.org/wiki/Changes/EncourageI686LeafRemoval
 ExcludeArch:    %{ix86}
@@ -62,7 +62,10 @@ Provides:       bundled(sdbus-cpp) = %{sdbus_version}
 
 
 %prep
-%autosetup -p1
+%autosetup -N
+%if %{fedora} < 41
+%autopatch -p1
+%endif
 %if %{fedora} < 40
 tar -xf %{SOURCE1} -C subprojects/sdbus-cpp --strip=1
 %endif
