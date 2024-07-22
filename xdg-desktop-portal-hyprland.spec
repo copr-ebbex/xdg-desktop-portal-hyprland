@@ -23,6 +23,7 @@ ExcludeArch:    %{ix86}
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
+BuildRequires:  ninja-build
 BuildRequires:  systemd-rpm-macros
 
 BuildRequires:  pkgconfig(gbm)
@@ -83,7 +84,7 @@ cmake --install %{_vpath_builddir}
 popd
 export PKG_CONFIG_PATH=%{_builddir}/sdbus/%{_lib}/pkgconfig
 %endif
-%cmake
+%cmake -G Ninja
 %cmake_build
 
 
