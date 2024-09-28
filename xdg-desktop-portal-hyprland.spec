@@ -1,7 +1,7 @@
 %global sdbus_version 1.3.0
 
 Name:           xdg-desktop-portal-hyprland
-Version:        1.3.5
+Version:        1.3.6
 Release:        %autorelease
 Summary:        xdg-desktop-portal backend for hyprland
 
@@ -67,7 +67,8 @@ Provides:       bundled(sdbus-cpp) = %{sdbus_version}
 %prep
 %autosetup -N
 %if %{fedora} < 41
-%autopatch -p1
+%patch -P 0 -p1
+sed -i '/libpipewire/s/>=1.1.82//' CMakeLists.txt
 %endif
 %if %{fedora} < 40
 tar -xf %{SOURCE1} -C subprojects/sdbus-cpp --strip=1
@@ -75,18 +76,7 @@ tar -xf %{SOURCE1} -C subprojects/sdbus-cpp --strip=1
 
 
 %build
-%if %{fedora} < 40
-pushd subprojects/sdbus-cpp
-%cmake -G Ninja \
-    -DCMAKE_INSTALL_PREFIX=%{_builddir}/sdbus \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF
-%cmake_build
-cmake --install %{_vpath_builddir}
-popd
-export PKG_CONFIG_PATH=%{_builddir}/sdbus/%{_lib}/pkgconfig
-%endif
-%cmake -G Ninja
+%cmake -G Ninja -DBUILD_SHARED_LIBS:BOOL=OFF
 %cmake_build
 
 
