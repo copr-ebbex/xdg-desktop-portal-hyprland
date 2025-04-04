@@ -1,7 +1,7 @@
 %global sdbus_version 1.3.0
 
 Name:           xdg-desktop-portal-hyprland
-Version:        1.3.6
+Version:        1.3.9
 Release:        %autorelease
 Summary:        xdg-desktop-portal backend for hyprland
 
