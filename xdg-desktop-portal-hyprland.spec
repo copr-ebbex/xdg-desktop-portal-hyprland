@@ -1,5 +1,5 @@
 Name:           xdg-desktop-portal-hyprland
-Version:        1.3.12
+Version:        1.4.0
 Release:        %autorelease
 Summary:        xdg-desktop-portal backend for hyprland
 
@@ -20,17 +20,18 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(hyprland-protocols)
 BuildRequires:  pkgconfig(libdrm)
-BuildRequires:  pkgconfig(libpipewire-0.3)
+BuildRequires:  pkgconfig(libpipewire-0.3) >= 1.1.82
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  pkgconfig(Qt6Widgets)
-BuildRequires:  pkgconfig(sdbus-c++)
+BuildRequires:  pkgconfig(sdbus-c++) >= 2.0.0
 BuildRequires:  pkgconfig(systemd)
+BuildRequires:  pkgconfig(uuid)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(wayland-scanner)
-BuildRequires:  pkgconfig(hyprlang)
-BuildRequires:  pkgconfig(hyprwayland-scanner)
-BuildRequires:  pkgconfig(hyprutils)
+BuildRequires:  pkgconfig(hyprlang) >= 0.2.0
+BuildRequires:  pkgconfig(hyprwayland-scanner) >= 0.4.2
+BuildRequires:  pkgconfig(hyprutils) >= 0.2.6
 
 Requires:       dbus-common
 Requires:       dbus
